@@ -1,12 +1,12 @@
 import  express  from "express";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
-
+import cors from "cors";
 dotenv.config();
 
 const app =express();
 const PORT= process.env.PORT;
-
+app.use(cors());
 app.use(express.json());
 
 const MONGO_URL = process.env.MONGO_URL ;
@@ -48,7 +48,7 @@ app.get("/movies/:id", async  function(request,response){
      
      const result = await client.db("b30wd").collection("movies").updateOne({ id: id }, { $set: updateData });
      response.send(result);
-    })
+    });
     
     
      app.post("/movies",  async function(request,response){
@@ -56,6 +56,6 @@ app.get("/movies/:id", async  function(request,response){
         console.log(data);
        const result = await client.db("b30wd").collection("movies").insertMany(data);
        response.send(result);
-      }) 
+      });
 
-       app.listen(PORT,()=>console.log(`sever is started ${PORT}`));
+       app.listen(PORT,() =>console.log(`sever is started ${PORT}`));
