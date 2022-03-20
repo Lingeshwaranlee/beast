@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app =express();
-const PORT= 4005;
+const PORT= process.env.PORT;
 app.use(express.json());
 
 const MONGO_URL = process.env.MONGO_URL ;
