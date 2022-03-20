@@ -1,11 +1,12 @@
 import  express  from "express";
-import { request } from "express";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const app =express();
 const PORT= process.env.PORT;
+
 app.use(express.json());
 
 const MONGO_URL = process.env.MONGO_URL ;
@@ -57,4 +58,4 @@ app.get("/movies/:id", async  function(request,response){
        response.send(result);
       }) 
 
-      app.listen(PORT,()=>console.log(`sever is started ${PORT}`))
+       app.listen(PORT,()=>console.log(`sever is started ${PORT}`));
